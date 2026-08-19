@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>To Sav 💜</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eee5ff, #d9c5f1, #b99bd9);
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+/* HIDE CHECKBOX */
+
+#open {
+    display: none;
+}
+
+/* FLOATING HEARTS */
+
+.heart {
+    position: fixed;
+    color: white;
+    font-size: 25px;
+    opacity: .7;
+    animation: float 7s linear infinite;
+    pointer-events: none;
+}
+
+.h1 { left: 10%; animation-delay: 0s; }
+.h2 { left: 30%; animation-delay: 2s; }
+.h3 { left: 70%; animation-delay: 1s; }
+.h4 { left: 90%; animation-delay: 3s; }
+
+@keyframes float {
+    from {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: .8;
+    }
+
+    to {
+        transform: translateY(-20vh);
+        opacity: 0;
+    }
+}
+
+/* START SCREEN */
+
+.start {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .5s ease;
+}
+
+.title {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-shadow: 0 3px 8px #73558d;
+}
+
+.tap {
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    margin-top: 25px;
+}
+
+/* ENVELOPE */
+
+.envelope {
+    position: relative;
+    width: min(350px, 88vw);
+    height: 230px;
+    cursor: pointer;
+    display: block;
+}
+
+/* BACK OF ENVELOPE */
+
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #eee5fa;
+    border: 3px solid #8061a4;
+    border-radius: 14px;
+    box-shadow: 0 18px 35px rgba(75,50,100,.25);
+}
+
+/* FLAP */
+
+.flap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 160px;
+
+    background: #d4c0ed;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    border: 3px solid #8061a4;
+
+    transform-origin: top center;
+
+    transition: transform 1s ease;
+
+    z-index: 5;
+}
+
+/* HEART */
+
+.seal {
+    position: absolute;
+    z-index: 10;
+
+    left: 50%;
+    top: 83px;
+
+    transform: translateX(-50%);
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: #7c5c9f;
+
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+
+    transition: all .5s ease;
+}
+
+/* LETTER */
+
+.letter {
+    position: fixed;
+
+    z-index: 100;
+
+    left: 50%;
+    top: 50%;
+
+    width: min(92vw, 650px);
+    height: min(84vh, 850px);
+
+    background: #fffdfb;
+
+    border-radius: 22px;
+
+    padding: 30px 25px;
+
+    box-shadow: 0 25px 70px rgba(60,40,80,.4);
+
+    overflow-y: auto;
+
+    transform: translate(-50%, 120vh);
+
+    transition: transform 1s ease;
+
+    -webkit-overflow-scrolling: touch;
+}
+
+.letter h1 {
+    text-align: center;
+    color: #76569b;
+    font-size: 30px;
+    margin: 5px 0 25px;
+}
+
+.letter p {
+    color: #49385d;
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.goodluck {
+    text-align: center;
+    color: #76569b;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 30px;
+    padding-bottom: 15px;
+}
+
+/* CLOSE BUTTON */
+
+.close {
+    position: sticky;
+    top: 0;
+    float: right;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+    background: #8061a4;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Arial, sans-serif;
+    font-size: 23px;
+
+    cursor: pointer;
+}
+
+/* WHEN CHECKED = OPEN */
+
+#open:checked ~ .start .flap {
+    transform: rotateX(180deg);
+}
+
+#open:checked ~ .start .seal {
+    opacity: 0;
+    transform: translateX(-50%) scale(.3);
+}
+
+#open:checked ~ .letter {
+    transform: translate(-50%, -50%);
+}
+
+#open:checked ~ .start {
+    opacity: 0;
+    pointer-events: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HIDDEN SWITCH -->
+<input type="checkbox" id="open">
+
+
+<!-- FLOATING DECORATIONS -->
+
+<div class="heart h1">✦</div>
+<div class="heart h2">♡</div>
+<div class="heart h3">✦</div>
+<div class="heart h4">♡</div>
+
+
+<!-- ENVELOPE -->
+
+<div class="start">
+
+    <div class="title">
+        Something for you, Sav 💌
+    </div>
+
+    <label for="open" class="envelope">
+
+        <div class="back"></div>
+
+        <div class="flap"></div>
+
+        <div class="seal">
+            ♥
+        </div>
+
+    </label>
+
+    <div class="tap">
+        Tap the envelope to open 💜
+    </div>
+
+</div>
+
+
+<!-- LETTER -->
+
+<div class="letter">
+
+    <label for="open" class="close">
+        ×
+    </label>
+
+    <h1>
+        To Sav ❤️
+    </h1>
+
+    <p>
+
+Hey baby I know you are asleep but I just want to let you know that you are the bestest man. You have your exam in the morning, something that is so important to you and something you worked so so hard for all summer. I want to send you this because I do not want you to be nervous or stressed about it, I have my full faith in you, because you are intelligent and smart and full of knowledge and everyone including me know how amazing you are and how smart you truly are, so I want you to go there full of confidence, pray to baba ji, and start your exam, and try your best until you finish, but I know I don’t even need to tell you that because you will do your best and you will be the most bestest out of them all. You deserve this so much and not just because you just do but because you have earned it and you have put so much effort and work into it. And I know that you can do this, you have got this okay my love. You will be the best, you are always the best, I love you so much my sweetheart. You will do so well, lots of kisses for Goodluck my baby ❤️❤️❤️
+
+    </p>
+
+    <div class="goodluck">
+        Good luck my baby ❤️❤️❤️
+        <br>
+        You've got this 🥹💜
+    </div>
+
+</div>
+
+</body>
+</html>
